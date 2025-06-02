@@ -6,6 +6,7 @@ import './App.css'
 import Home from './pages/Home'
 import Props from './pages/Props'
 import Timer from './pages/Timer'
+import { ThemeProvider } from './ThemeContext';
 
 
 function App() {
