@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
+const motivationalPhrases = [
+  "Отлично сделано!",
+  "Ты хорош!",
+  "🔥Машина! Трактор!",
+  "Нереально круто!",
+  "🔥 Жесткий результат!"
+];
+
 export default function Timer() {
   const [name, setName] = useState('');
   const [timeLeft, setTimeLeft] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
+  const [finalPhrase, setFinalPhrase] = useState('');
 
   useEffect(() => {
     if (!isRunning) return;
 
     if (timeLeft === 0) {
       setIsRunning(false);
+
+      const random = motivationalPhrases[Math.floor(Math.random() * motivationalPhrases.length)];
+      setFinalPhrase(random);
+
       return;
     }
 
@@ -26,14 +39,23 @@ export default function Timer() {
       alert('Введите имя!');
       return;
     }
-    setTimeLeft(10);
+
+    setTimeLeft(3);
     setIsRunning(true);
+    setFinalPhrase('');
+  };
+
+  const retryTimer = () => {
+    setTimeLeft(3);
+    setIsRunning(true);
+    setFinalPhrase('');
   };
 
   const reset = () => {
     setIsRunning(false);
     setTimeLeft(null);
     setName('');
+    setFinalPhrase('');
   };
 
   return (
@@ -60,8 +82,13 @@ export default function Timer() {
       <button onClick={reset} style={{ marginLeft: '10px' }}>Сброс</button>
 
       <div style={{ marginTop: '20px', fontSize: '24px' }}>
-        {timeLeft !== null && timeLeft > 0 && <p>Осталось: {timeLeft} сек</p>}
-        {timeLeft === 0 && <p>Ты справился, {name} 💪</p>}
+        {timeLeft !== null && timeLeft > 0 && <p>{name}, осталось: {timeLeft} сек</p>}
+        {timeLeft === 0 && (
+          <div style={{ display: 'grid', alignItems: 'center', gap: '10px', marginTop: '20px', fontSize: '24px' }}>
+          <p style={{ margin: 0 }}>{finalPhrase}</p>
+          <button onClick={retryTimer}>Попробовать ещё раз</button>
+        </div>
+        )}
       </div>
     </div>
   );
