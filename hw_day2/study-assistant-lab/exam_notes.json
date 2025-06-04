@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "heading": "Integration by Parts Formula",
+    "summary": "Use the formula \u222bu dv = uv - \u222bv du for integrating products of functions.",
+    "page_ref": null
+  },
+  {
+    "id": 2,
+    "heading": "Choosing u and dv",
+    "summary": "Choose u and dv thoughtfully; follow the LIATE rule (Logarithmic, Inverse, Algebraic, Trigonometric, Exponential).",
+    "page_ref": null
+  },
+  {
+    "id": 3,
+    "heading": "Disk Method for Volume",
+    "summary": "Volume V = \u03c0\u222b[f(x)]\u00b2 dx for rotating around the x-axis; compute the integral from a to b.",
+    "page_ref": null
+  },
+  {
+    "id": 4,
+    "heading": "Washer Method for Volume",
+    "summary": "Use V = \u03c0\u222b(R(x)\u00b2 - r(x)\u00b2) dx for hollow shapes; R(x) is outer radius, r(x) is inner radius.",
+    "page_ref": null
+  },
+  {
+    "id": 5,
+    "heading": "Shell Method for Volume",
+    "summary": "For rotation around y-axis, V = 2\u03c0\u222bx f(x) dx; x is radius, f(x) is height of the shell.",
+    "page_ref": null
+  },
+  {
+    "id": 6,
+    "heading": "Determining Limits of Integration",
+    "summary": "Clearly identify limits of integration based on the region being revolved for accurate volume calculation.",
+    "page_ref": null
+  },
+  {
+    "id": 7,
+    "heading": "Example of Disk Method",
+    "summary": "Volume of f(x)=x\u00b2 from x=0 to x=2 around x-axis gives V=32\u03c0/5 after integration.",
+    "page_ref": null
+  },
+  {
+    "id": 8,
+    "heading": "Example of Washer Method",
+    "summary": "Region between f(x)=x and g(x)=x\u00b2 from x=0 to x=1 gives V=2\u03c0/15 using Washer Method.",
+    "page_ref": null
+  },
+  {
+    "id": 9,
+    "heading": "Example of Shell Method",
+    "summary": "Rotating y=x\u00b2 from x=0 to x=1 around y-axis gives V=\u03c0/2 with Shell Method.",
+    "page_ref": null
+  },
+  {
+    "id": 10,
+    "heading": "Practice is Key",
+    "summary": "Practice different functions and methods to strengthen understanding of volumes of revolution.",
+    "page_ref": null
+  }
+]
