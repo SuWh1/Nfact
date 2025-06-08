@@ -1,4 +1,7 @@
-from flask import Flask, request, jsonify
+from fastapi import FastAPI, Request
+from pydantic import BaseModel
+from fastapi.responses import JSONResponse
+import uvicorn
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.openai import OpenAI
 from llama_index.agent.openai import OpenAIAgent
@@ -10,8 +13,7 @@ Settings.openai_api_key = os.getenv("OPENAI_API_KEY")
 if not Settings.openai_api_key:
     raise ValueError("OPENAI_API_KEY is not set. Make sure it's in your environment variables.")
 
-app = Flask(__name__)
-app.config['PROPAGATE_EXCEPTIONS'] = True
+app = FastAPI()
 
 documents = SimpleDirectoryReader("docs").load_data()
 index = VectorStoreIndex.from_documents(documents)
@@ -36,16 +38,22 @@ agent = OpenAIAgent.from_tools(
     llm=llm,
     verbose=True
 )
-@app.route("/respond", methods=["POST"])
-def respond():
+
+class RespondRequest(BaseModel):
+    sender: str
+    receiver: str
+    type: str
+    content: str
+
+@app.post("/respond")
+async def respond(request: RespondRequest):
     try:
-        msg = request.json
-        query = msg.get("content", "")
+        query = request.content
         result = agent.chat(query)
-        return jsonify({"response": str(result)})
+        return JSONResponse({"response": str(result)})
     except Exception as e:
         print("ERROR:", e)
-        return jsonify({"error": str(e)}), 500
+        return JSONResponse({"error": str(e)}, status_code=500)
 
 if __name__ == "__main__":
-    app.run(port=5001)
+    uvicorn.run("agent_b:app", host="0.0.0.0", port=5001, reload=False)
